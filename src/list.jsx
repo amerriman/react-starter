@@ -5,9 +5,9 @@ module.exports = React.createClass({
   render: function() {
     //You'll get an empty object first, then the object that contains the data from Firebase
     // console.log(this.props.items);
-    return <ul>
+    return <div>
       {this.renderList()}
-    </ul>
+    </div>
   },
   renderList: function(){
     if (this.props.items['.value']=== null){
@@ -19,8 +19,14 @@ module.exports = React.createClass({
 
       for (var key in this.props.items){
         if (key !== '.key'){
+
+          var item = this.props.items[key];
+          item.key = key;
+
           children.push(
-            <ListItem />
+            <ListItem
+              item={item}
+              key={key}/>
           )
         }
       }
